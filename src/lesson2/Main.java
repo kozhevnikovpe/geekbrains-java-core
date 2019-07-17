@@ -16,6 +16,17 @@ public class Main {
         }catch(MyArrayDataException e){
             e.printStackTrace();
         }
+
+        /*
+        Требуется реализовать enum DayOfWeek, который будет представлять дни недели.
+        С его помощью необходимо решить задачу определения кол-ва рабочих часов до конца недели по заднному текущему дню.
+
+         Возвращает кол-во оставшихся рабочих часов до конца
+         недели по заданному текущему дню. Считается, что
+         текущий день ещё не начался, и рабочие часы за него
+         должны учитываться.
+         */
+        System.out.println(getWorkingHours(DayOfWeek.FRIDAY));
     }
 
     static int matrixSum(String[][] matrix){
@@ -33,6 +44,26 @@ public class Main {
                     throw new MyArrayDataException("Недопустимый тип данных в ячейке ("+i+","+j+")");
                 }
             }
+        }
+        return result;
+    }
+
+    enum DayOfWeek{
+        MONDAY(true,8), TUESDAY(true,8),WEDNSDAY(true,8),THURSDAY(true,8),FRIDAY(true,8),SATURDAY(false,0),SUNDAY(false,0);
+
+        private boolean isWorkDay;
+        private int workingHours;
+        DayOfWeek(boolean isWorkDay, int workingHours){
+            this.isWorkDay = isWorkDay;
+            this.workingHours = workingHours;
+        }
+    }
+
+    public static int getWorkingHours(DayOfWeek day){
+        int result =0;
+        for (DayOfWeek d:DayOfWeek.values()){
+            if(d.isWorkDay && d.ordinal()>=day.ordinal())
+                result+=d.workingHours;
         }
         return result;
     }
