@@ -17,7 +17,9 @@ public class Main {
                 new SpaceWarrior(250, "Гамора", 80, 10,5),
                 new Assasin(300, "Грут", 100, 0,1));
 
-        Game game = new Game(team1,team2, team3);
+        Team team4 = new Team("Танос Team", new SpaceWarrior(1000, "Танос", 150, 50,6));
+
+        Game game = new Game( team3, team4);
 
         game.run();
         game.info();
